@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+noarbeauty/.next/
+noarbeauty/out/
+
+# Python
+api/venv/
+api/__pycache__/
+api/**/__pycache__/
+api/*.pyc
+api/.mediapipe/
+
+# Environment files (NIKAD commit-ovati!)
+.env
+.env.local
+.env.production
+.env*.local
+api/.env
+
+# Build outputs
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/

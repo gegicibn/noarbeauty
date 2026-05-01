@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NoarBeauty AI — Analiza lica veštačkom inteligencijom</title>
+  <meta name="description" content="Saznajte kako vaše lice izgleda kroz oči veštačke inteligencije. Detaljna analiza crta lica, simetrije i harmonije." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">noar<span>beauty</span>.ai</a>
+    <ul class="nav-links">
+      <li><a href="#kako-radi">Kako radi</a></li>
+      <li><a href="#funkcije">Funkcije</a></li>
+      <li><a href="#cene">Cene</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="#analiza" class="btn-nav">Počni besplatno</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+  <div class="container">
+    <div class="badge">🧬 Veštačka inteligencija za analizu lica</div>
+    <h1>Otkrij harmoniju<br /><span class="gradient-text">svog lica</span></h1>
+    <p class="hero-sub">
+      Naš AI analizira više od 30 crta lica — simetriju, proporcije, jawline, oči, nos i kožu —
+      i daje ti detaljni izveštaj za manje od 60 sekundi.
+    </p>
+    <div class="hero-cta">
+      <a href="#analiza" class="btn-primary">Analiziraj lice besplatno</a>
+      <a href="#kako-radi" class="btn-ghost">Vidi kako radi →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">50k+</span>
+        <span class="stat-label">Analiza urađeno</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">30+</span>
+        <span class="stat-label">Crta lica</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">98%</span>
+        <span class="stat-label">Zadovoljnih korisnika</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPLOAD SEKCIJA -->
+<section class="upload-section" id="analiza">
+  <div class="container">
+    <div class="upload-card">
+      <div class="upload-left">
+        <h2>Učitaj svoju fotografiju</h2>
+        <p>Koristimo napredne AI modele da analiziramo crte tvog lica. Fotografija se ne čuva nakon analize.</p>
+        <ul class="upload-tips">
+          <li>✓ Fotografija mora biti frontalna (gledaš pravo u kameru)</li>
+          <li>✓ Dobro osvetljenje, bez filtera</li>
+          <li>✓ Celo lice mora biti vidljivo</li>
+          <li>✓ Bez naočara ili šešira</li>
+        </ul>
+        <div class="privacy-note">
+          🔒 Tvoja fotografija se obrađuje lokalno i nije deljenja sa trećim stranama
+        </div>
+      </div>
+      <div class="upload-right">
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+            </svg>
+          </div>
+          <p class="drop-text">Prevuci fotografiju ovde</p>
+          <p class="drop-sub">ili</p>
+          <label for="fileInput" class="btn-upload">Izaberi fotografiju</label>
+          <input type="file" id="fileInput" accept="image/*" hidden />
+          <p class="drop-formats">JPG, PNG, WEBP · Max 10MB</p>
+        </div>
+        <div class="preview-zone" id="previewZone" style="display:none;">
+          <img id="previewImg" src="" alt="Preview" />
+          <button class="btn-analyze" id="analyzeBtn">
+            <span class="btn-analyze-text">Analiziraj →</span>
+            <span class="btn-analyze-loading" style="display:none;">Analizujem...</span>
+          </button>
+          <button class="btn-reset" id="resetBtn">Promeni fotografiju</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REZULTATI -->
+<section class="results-section" id="resultsSection" style="display:none;">
+  <div class="container">
+    <h2 class="section-title">Rezultati analize</h2>
+    <div class="results-grid" id="resultsGrid">
+      <!-- JS popunjava -->
+    </div>
+    <div class="overall-score" id="overallScore">
+      <!-- JS popunjava -->
+    </div>
+    <div class="ai-report" id="aiReport">
+      <!-- JS popunjava -->
+    </div>
+  </div>
+</section>
+
+<!-- KAKO RADI -->
+<section class="how-section" id="kako-radi">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-dark">Proces</div>
+      <h2 class="section-title">Kako NoarBeauty AI radi?</h2>
+      <p class="section-sub">Tri jednostavna koraka do detaljne analize tvog lica</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">📸</div>
+        <h3>Učitaj fotografiju</h3>
+        <p>Učitaj jasnu, frontalnu fotografiju svog lica. Foto ostaje privatan — ne čuvamo ga.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">🧠</div>
+        <h3>AI analizira lice</h3>
+        <p>Naš AI mapira više od 68 ključnih tačaka na licu i analizira proporcije, simetriju i harmoniju crta.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">📊</div>
+        <h3>Dobijaš izveštaj</h3>
+        <p>Za manje od 60 sekundi dobijaš detaljan izveštaj sa ocenama za svaku crtu lica i preporukama.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUNKCIJE -->
+<section class="features-section" id="funkcije">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-dark">Funkcije</div>
+      <h2 class="section-title">Šta analiziramo?</h2>
+      <p class="section-sub">Sveobuhvatna analiza zasnovana na zlatnom rezu i naučnim standardima lepote</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚖️</div>
+        <h3>Simetrija lica</h3>
+        <p>Merimo simetriju između leve i desne strane lica — jedan od ključnih faktora atraktivnosti.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👁️</div>
+        <h3>Analiza očiju</h3>
+        <p>Razmak, veličina, nagib i oblik očiju u odnosu na proporcije lica.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📐</div>
+        <h3>Jawline & brada</h3>
+        <p>Analiza vilice, linije vilice i oblika brade u odnosu na idealne proporcije.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌟</div>
+        <h3>Zlatni rez</h3>
+        <p>Poređenje proporcija tvog lica sa Phi (φ = 1.618) — matematičkim standardom savršenih proporcija.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💎</div>
+        <h3>Analiza nosa</h3>
+        <p>Širina, dužina i oblik nosa u harmoniji sa ostalim crtama lica.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👄</div>
+        <h3>Usne & usta</h3>
+        <p>Proporcije gornje i donje usne, širina usta i simetrija Cupidovog luka.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎭</div>
+        <h3>Oblik lica</h3>
+        <p>Prepoznavanje oblika lica (oval, srce, kvadrat, dijamant) i šta to znači za tvoj izgled.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>Preporuke</h3>
+        <p>Personalizovane preporuke za frizure, šminku i stil koji naglašava tvoje najlepše crte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE ANALIZA -->
+<section class="sample-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-dark">Primer</div>
+      <h2 class="section-title">Primer analize</h2>
+    </div>
+    <div class="sample-card">
+      <div class="sample-left">
+        <div class="sample-face">
+          <div class="face-placeholder">
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+              <circle cx="12" cy="8" r="4"/>
+              <path d="M6 20v-2a6 6 0 0112 0v2"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="sample-right">
+        <h3>Detaljni izveštaj uključuje:</h3>
+        <div class="score-bars">
+          <div class="score-bar-item">
+            <div class="score-label">
+              <span>Simetrija lica</span>
+              <span class="score-val">87/100</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:87%"></div></div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-label">
+              <span>Zlatni rez proporcija</span>
+              <span class="score-val">92/100</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-label">
+              <span>Jawline definicija</span>
+              <span class="score-val">78/100</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-label">
+              <span>Harmonija crta</span>
+              <span class="score-val">85/100</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+          </div>
+          <div class="score-bar-item">
+            <div class="score-label">
+              <span>Oblik očiju</span>
+              <span class="score-val">90/100</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+          </div>
+        </div>
+        <div class="overall-badge">
+          Ukupna ocena: <strong>86/100</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENE -->
+<section class="pricing-section" id="cene">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-dark">Cene</div>
+      <h2 class="section-title">Jednostavne cene</h2>
+      <p class="section-sub">Počni besplatno. Nadogradi kada budeš spreman.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Besplatno</div>
+        <div class="plan-price">0 RSD<span>/mesečno</span></div>
+        <ul class="plan-features">
+          <li>✓ 3 analize mesečno</li>
+          <li>✓ Osnovna analiza simetrije</li>
+          <li>✓ Oblik lica</li>
+          <li>✓ Ukupna ocena</li>
+          <li class="muted">✗ Detaljna analiza crta</li>
+          <li class="muted">✗ AI preporuke</li>
+          <li class="muted">✗ PDF izveštaj</li>
+        </ul>
+        <a href="#analiza" class="btn-plan-free">Počni besplatno</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="plan-badge">Najpopularnije</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-price">490 RSD<span>/mesečno</span></div>
+        <ul class="plan-features">
+          <li>✓ Neograničene analize</li>
+          <li>✓ Kompletna analiza svih crta</li>
+          <li>✓ Zlatni rez analiza</li>
+          <li>✓ AI personalizovane preporuke</li>
+          <li>✓ Poređenje sa celebriticima</li>
+          <li>✓ PDF izveštaj</li>
+          <li>✓ Istorija analiza</li>
+        </ul>
+        <a href="#" class="btn-plan-pro">Uzmi Pro plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge-dark">FAQ</div>
+      <h2 class="section-title">Česta pitanja</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Da li se moja fotografija čuva? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Ne. Tvoja fotografija se obrađuje u realnom vremenu i odmah briše nakon analize. Ne čuvamo ni jednu fotografiju na našim serverima.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Koliko je analiza tačna? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Naš AI koristi najnovije modele za prepoznavanje lica sa tačnošću od 95%+. Analiza je zasnovana na naučnim standardima proporcija i simetrije, ali treba je koristiti kao zabavni alat, ne medicinsku dijagnozu.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Koje fotografije daju najbolje rezultate? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Frontalna fotografija (gledaš pravo u kameru) sa dobrim osvetljenjem, bez filtera, bez naočara i bez šešira. Celo lice mora biti vidljivo u kadru.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Da li radi za sve tipove lica i etničke grupe? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Da. Naš AI je treniran na raznovrsnom skupu podataka koji uključuje sve etničke grupe i tipove lica. Analiza ne privileguje nijedan tip lepote.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Mogu li da otkazem pretplatu? <span class="faq-icon">+</span></button>
+        <div class="faq-a">Da, možeš otkazati pretplatu u bilo kom trenutku bez naknade za raskid. Imaš pristup Pro funkcijama do kraja plaćenog perioda.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Spreman da vidiš svoju analizu?</h2>
+    <p>Besplatno, bez registracije. Za manje od 60 sekundi.</p>
+    <a href="#analiza" class="btn-primary btn-large">Analiziraj lice →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">noar<span>beauty</span>.ai</a>
+      <p>AI analiza lica za srpsko tržište.<br />Nauka iza lepote.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Proizvod</h4>
+        <a href="#kako-radi">Kako radi</a>
+        <a href="#funkcije">Funkcije</a>
+        <a href="#cene">Cene</a>
+      </div>
+      <div class="footer-col">
+        <h4>Kompanija</h4>
+        <a href="#">O nama</a>
+        <a href="#">Blog</a>
+        <a href="#">Kontakt</a>
+      </div>
+      <div class="footer-col">
+        <h4>Pravno</h4>
+        <a href="#">Privatnost</a>
+        <a href="#">Uslovi korišćenja</a>
+        <a href="#">GDPR</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 NoarBeauty AI. Sva prava zadržana.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

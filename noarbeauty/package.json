@@ -1,0 +1,44 @@
+{
+  "name": "noarbeauty",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:types": "supabase gen types typescript --project-id $SUPABASE_PROJECT_ID > lib/types/database.types.ts"
+  },
+  "dependencies": {
+    "next": "15.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "@supabase/supabase-js": "^2.46.2",
+    "@supabase/ssr": "^0.5.2",
+    "stripe": "^17.4.0",
+    "@stripe/stripe-js": "^5.2.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.5",
+    "react-dropzone": "^14.3.5",
+    "react-compare-slider": "^3.1.0",
+    "@react-pdf/renderer": "^4.1.6",
+    "posthog-js": "^1.192.0",
+    "lucide-react": "^0.468.0",
+    "framer-motion": "^11.15.0",
+    "zod": "^3.24.1",
+    "sonner": "^1.7.1",
+    "resend": "^4.0.1",
+    "@sentry/nextjs": "^8.45.0"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "15.1.0"
+  }
+}

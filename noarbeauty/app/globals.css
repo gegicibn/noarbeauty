@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-[#0a0a0a] text-[#e8e8e8] antialiased;
+  }
+  ::selection { @apply bg-accent/20 text-accent; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full
+           bg-gradient-to-r from-[#c9a96e] via-[#e8c98a] to-[#f0d4a0]
+           text-black font-bold text-sm tracking-wide
+           transition-all duration-200 hover:opacity-90 hover:-translate-y-px active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full
+           border border-white/10 text-white/80 font-medium text-sm
+           transition-all duration-200 hover:border-accent/50 hover:text-white;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full
+           border border-white/10 text-white/70 font-medium text-sm
+           transition-all duration-200 hover:border-accent hover:text-accent;
+  }
+  .card {
+    @apply bg-[#111] border border-white/[0.06] rounded-2xl;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full
+           bg-accent/10 border border-accent/20 text-accent text-xs font-semibold
+           uppercase tracking-widest;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#c9a96e] via-[#e8c98a] to-[#f0d4a0]
+           bg-clip-text text-transparent;
+  }
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight;
+  }
+  .input {
+    @apply w-full bg-[#111] border border-white/10 rounded-xl px-4 py-3 text-sm
+           text-white placeholder:text-white/30 outline-none
+           focus:border-accent/50 transition-colors;
+  }
+}
+
+.score-bar { @apply h-1.5 rounded-full bg-white/5 overflow-hidden; }
+.score-bar-fill {
+  @apply h-full rounded-full bg-gradient-to-r from-[#c9a96e] to-[#e8c98a]
+         transition-all duration-700 ease-out;
+}
