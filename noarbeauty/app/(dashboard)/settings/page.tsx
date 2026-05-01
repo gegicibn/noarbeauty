@@ -106,11 +106,8 @@ export default function SettingsPage() {
           </p>
           {plan === "free" ? (
             <div className="flex gap-3">
-              <Link href="/api/stripe/checkout?plan=pro" className="btn-primary text-sm">
-                Nadogradi na Pro — 990 RSD/mes
-              </Link>
-              <Link href="/api/stripe/checkout?plan=elite" className="btn-ghost text-sm">
-                Elite plan
+              <Link href="/#cene" className="btn-primary text-sm">
+                Nadogradi — 14.990 RSD/god
               </Link>
             </div>
           ) : (
@@ -119,12 +116,6 @@ export default function SettingsPage() {
                 <div className="font-semibold gradient-text">{planLabel} plan aktivan</div>
                 <div className="text-xs text-white/30 mt-0.5">Neograničene analize</div>
               </div>
-              <a
-                href="/api/stripe/portal"
-                className="btn-ghost text-xs"
-              >
-                Upravljaj pretplatom →
-              </a>
             </div>
           )}
         </div>

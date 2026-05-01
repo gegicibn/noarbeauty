@@ -101,8 +101,8 @@ export default async function DashboardPage() {
             <div className="mt-4 pt-4 border-t border-white/[0.06]">
               <p className="text-sm text-white/40">
                 Iskoristio si sve besplatne analize.{" "}
-                <Link href="/api/stripe/checkout?plan=pro" className="text-accent hover:text-accent-light">
-                  Nadogradi na Pro →
+                <Link href="/#cene" className="text-accent hover:text-accent-light">
+                  Nadogradi →
                 </Link>
               </p>
             </div>
