@@ -10,7 +10,11 @@
       "Bash(curl -s \"https://www.qoves.com/_next/static/chunks/0._pvvs~u5w1y.css?dpl=dpl_YUZN83rGy7nUPnetme5iP5o3ySUB\" -A \"Mozilla/5.0\")",
       "Bash(curl -s \"https://www.qoves.com/_next/static/chunks/0i7bz8lneax5u.css?dpl=dpl_YUZN83rGy7nUPnetme5iP5o3ySUB\" -A \"Mozilla/5.0\")",
       "Bash(curl -s \"https://www.qoves.com\" -A \"Mozilla/5.0\")",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "Bash(vercel --version)",
+      "Bash(gh --version)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

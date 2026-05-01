@@ -25,7 +25,7 @@ export async function POST(request: Request) {
         await supabase
           .from("profiles")
           .update({
-            plan: plan as "pro" | "elite",
+            plan: "pro" as const,
             stripe_subscription_id: session.subscription as string,
           })
           .eq("id", userId);
