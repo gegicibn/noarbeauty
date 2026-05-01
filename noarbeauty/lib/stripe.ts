@@ -13,16 +13,10 @@ export const PLANS = {
     stripePriceId: null,
   },
   pro: {
-    name: "Pro",
-    price: 990,
-    analyses: -1, // neograničeno
-    stripePriceId: process.env.STRIPE_PRO_PRICE_ID!,
-  },
-  elite: {
-    name: "Elite",
-    price: 2490,
+    name: "NoarBeauty",
+    price: 14990,
     analyses: -1,
-    stripePriceId: process.env.STRIPE_ELITE_PRICE_ID!,
+    stripePriceId: process.env.STRIPE_PRO_PRICE_ID!,
   },
 } as const;
 

@@ -15,20 +15,20 @@ const faqs = [
     a: "Frontalna fotografija daje podatke o simetriji i frontalnim proporcijama. Levi i desni profil su neophodni za Powell analizu profila — nasolabijalni ugao, nazofrontalni ugao, projekciju brade i nosa.",
   },
   {
+    q: "Hoće li analiza mog lica da me učini nesigurnim?",
+    a: "Naš cilj je suprotan — da razumeš svoje lice na osnovu nauke, ne na osnovu subjektivnih komentara ili društvenih mreža. Korisnici prijavljuju veće samopouzdanje nakon što razumeju šta je zaista u pitanju.",
+  },
+  {
     q: "Na kojim jezicima je dostupan izveštaj?",
     a: "Izveštaj je dostupan na srpskom, bosanskom i engleskom jeziku. Možeš izabrati jezik pre nego što generišeš izveštaj.",
   },
   {
-    q: "Šta je Haut.AI skin analiza?",
-    a: "Haut.AI je specijalizovani API za analizu kože koji se koristi u dermatološkim klinikama. Analizira teksturu, pore, hiperpigmentaciju, akne i hidrataciju iz fotografije.",
-  },
-  {
-    q: "Šta je morph vizualizacija?",
-    a: "Koristeći Replicate API sa FLUX i InstantID modelima, generišemo vizualizaciju kako bi vaše lice izgledalo sa predloženim estetskim promenama — bez operacije, samo da vidite potencijal.",
+    q: "Šta je skin analiza?",
+    a: "Koristimo specijalizovani AI koji se primenjuje u dermatološkim klinikama. Analizira teksturu, pore, hiperpigmentaciju, akne i hidrataciju iz fotografije.",
   },
   {
     q: "Mogu li koristiti kao plastični hirurg ili estetičar?",
-    a: "Da. Elite plan uključuje white-label opciju, API pristup i kliničke lookup tabele. Kontaktiraj nas za demo i specijalnu ponudu za klinike.",
+    a: "Da. NoarBeauty analiza koristi iste cefalometrijske standarde (Farkas, Powell) koji se primenjuju u kliničkoj praksi. Kontaktiraj nas na kontakt@noarbeauty.ai za specijalnu ponudu za klinike.",
   },
 ];
 
@@ -36,23 +36,24 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-28 bg-[#0a0a0a]">
+    <section id="faq" className="py-28 bg-white">
       <div className="max-w-3xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="badge mb-4">FAQ</div>
-          <h2 className="section-title mb-4">Česta pitanja</h2>
+        <div className="text-center mb-14">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#233137] tracking-tight mb-4">
+            Česta <strong className="text-[#9aaeb5]">pitanja</strong>
+          </h2>
         </div>
 
         <div className="space-y-2">
           {faqs.map((faq, i) => (
-            <div key={i} className="card overflow-hidden">
+            <div key={i} className="bg-white border border-[#f2f2f2] rounded-[1.2rem] overflow-hidden">
               <button
                 onClick={() => setOpen(open === i ? null : i)}
-                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4 hover:bg-[#f9fbfb] transition-colors"
               >
-                <span className="font-medium text-sm">{faq.q}</span>
+                <span className="font-medium text-sm text-[#233137]">{faq.q}</span>
                 <span
-                  className={`text-accent text-xl leading-none transition-transform duration-200 flex-shrink-0 ${
+                  className={`text-[#9aaeb5] text-xl leading-none transition-transform duration-200 flex-shrink-0 ${
                     open === i ? "rotate-45" : ""
                   }`}
                 >
@@ -60,7 +61,7 @@ export default function FAQ() {
                 </span>
               </button>
               {open === i && (
-                <div className="px-6 pb-5 text-sm text-white/45 leading-relaxed border-t border-white/[0.04] pt-4">
+                <div className="px-6 pb-5 text-sm text-[#515255] leading-relaxed border-t border-[#f2f2f2] pt-4">
                   {faq.a}
                 </div>
               )}

@@ -5,6 +5,7 @@ import WhyGlowUp from "@/components/landing/WhyGlowUp";
 import NewWay from "@/components/landing/NewWay";
 import HowItWorks from "@/components/landing/HowItWorks";
 import AestheticTests from "@/components/landing/AestheticTests";
+import ClientTransformations from "@/components/landing/ClientTransformations";
 import SampleReport from "@/components/landing/SampleReport";
 import Testimonials from "@/components/landing/Testimonials";
 import Pricing from "@/components/landing/Pricing";
@@ -14,7 +15,7 @@ import Footer from "@/components/layout/Footer";
 
 export default function HomePage() {
   return (
-    <>
+    <div className="bg-white text-[#233137]" style={{ fontFamily: "var(--font-jakarta), var(--font-inter), sans-serif" }}>
       <Navbar />
       <main>
         <Hero />
@@ -23,6 +24,7 @@ export default function HomePage() {
         <NewWay />
         <HowItWorks />
         <AestheticTests />
+        <ClientTransformations />
         <SampleReport />
         <Testimonials />
         <Pricing />
@@ -30,6 +32,6 @@ export default function HomePage() {
         <FinalCTA />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

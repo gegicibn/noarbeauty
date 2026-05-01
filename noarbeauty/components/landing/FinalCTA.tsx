@@ -1,44 +1,38 @@
 import Link from "next/link";
+import Image from "next/image";
 
-const STEPS = [
-  { num: "01", text: "Odgovori na pitanja o svom licu i ciljevima" },
-  { num: "02", text: "Učitaj 3 fotografije (frontalna + profili)" },
-  { num: "03", text: "AI analizira 160+ aspekata za 60 sekundi" },
-  { num: "04", text: "Dobij personalizovani plan transformacije" },
-];
+const CDN = "https://cdn.qoves.com/static/landing/images/home";
 
 export default function FinalCTA() {
   return (
-    <section className="py-28 bg-[#0a0a0a]">
-      <div className="max-w-3xl mx-auto px-6 text-center">
-        <p className="text-xs uppercase tracking-[4px] text-[#c9a96e] mb-6">Počni danas</p>
-        <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-          Počni svoju transformaciju danas
+    <section className="relative py-32 overflow-hidden bg-[#9aaeb5]">
+      <Image
+        src={`${CDN}/cta/background.webp`}
+        alt=""
+        fill
+        className="object-cover"
+        unoptimized
+      />
+      <div className="absolute inset-0 bg-[#233137]/60" />
+
+      <div className="relative max-w-3xl mx-auto px-6 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight mb-6">
+          Pridruži se hiljadama koji već transformišu svoj izgled.
         </h2>
-        <p className="text-[#666] text-sm leading-relaxed mb-14 max-w-xl mx-auto">
+        <p className="text-white/70 text-sm leading-relaxed mb-10 max-w-xl mx-auto">
           Svaki dan bez plana je izgubljen dan. Saznaj tačno šta tvoje lice treba
           i kreni ka boljoj verziji sebe — bez operacija, bez nagađanja.
         </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-12 text-left max-w-xl mx-auto">
-          {STEPS.map(({ num, text }) => (
-            <div key={num} className="flex items-start gap-3 bg-[#0d0d0d] border border-white/[0.06] rounded-xl p-4">
-              <span className="text-2xl font-black text-[#1a1a1a] shrink-0">{num}</span>
-              <span className="text-xs text-[#666] leading-relaxed mt-1">{text}</span>
-            </div>
-          ))}
-        </div>
-
         <Link
           href="/sign-up"
-          className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-gradient-to-r from-[#c9a96e] via-[#e8c98a] to-[#f0d4a0] text-black font-bold text-sm hover:opacity-90 transition-opacity"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-white/90 text-[#233137] font-semibold text-sm rounded-[0.8rem] transition-colors"
         >
-          Pridruži se hiljadama
+          Počni svoju transformaciju
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="#233137" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </Link>
-
-        <div className="mt-6 text-[11px] text-[#444]">
-          14 dana garancija povrata novca · Bez rizika
-        </div>
+        <div className="mt-5 text-xs text-white/40">14 dana garancija povrata novca · Bez rizika</div>
       </div>
     </section>
   );

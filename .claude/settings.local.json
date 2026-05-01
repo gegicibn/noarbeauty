@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "WebFetch(domain:qoves.com)",
+      "WebFetch(domain:www.qoves.com)",
+      "Bash(curl -s \"https://www.qoves.com\" -A \"Mozilla/5.0 \\(Macintosh; Intel Mac OS X 10_15_7\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0.0.0 Safari/537.36\")",
+      "Bash(curl -s \"https://www.qoves.com/_next/static/chunks/0d2cml3rmwsl7.css?dpl=dpl_YUZN83rGy7nUPnetme5iP5o3ySUB\" -A \"Mozilla/5.0\")",
+      "Bash(grep -oE '#[0-9a-fA-F]{3,8}|rgb\\\\\\([^\\)]+\\\\\\)|rgba\\\\\\([^\\)]+\\\\\\)|--[a-z-]+:[^;{]+')",
+      "Bash(curl -s \"https://www.qoves.com/_next/static/chunks/0._pvvs~u5w1y.css?dpl=dpl_YUZN83rGy7nUPnetme5iP5o3ySUB\" -A \"Mozilla/5.0\")",
+      "Bash(curl -s \"https://www.qoves.com/_next/static/chunks/0i7bz8lneax5u.css?dpl=dpl_YUZN83rGy7nUPnetme5iP5o3ySUB\" -A \"Mozilla/5.0\")",
+      "Bash(curl -s \"https://www.qoves.com\" -A \"Mozilla/5.0\")",
+      "Bash(python3 -c ' *)"
     ]
   }
 }
