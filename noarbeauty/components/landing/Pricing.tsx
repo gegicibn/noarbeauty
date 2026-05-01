@@ -1,119 +1,78 @@
 import Link from "next/link";
 
-const plans = [
-  {
-    name: "Besplatno",
-    price: "0",
-    period: "/mesečno",
-    desc: "Za upoznavanje sa alatom",
-    features: [
-      { text: "2 analize mesečno", ok: true },
-      { text: "Osnovna simetrija analiza", ok: true },
-      { text: "Oblik lica", ok: true },
-      { text: "Ukupna ocena", ok: true },
-      { text: "Farkas / Powell merenja", ok: false },
-      { text: "Skin analiza (Haut.AI)", ok: false },
-      { text: "Claude AI izveštaj", ok: false },
-      { text: "PDF export", ok: false },
-      { text: "Morph vizualizacija", ok: false },
-    ],
-    cta: "Počni besplatno",
-    href: "/sign-up",
-    featured: false,
-  },
-  {
-    name: "Pro",
-    price: "990",
-    period: "/mesečno",
-    desc: "Za ozbiljnu analizu",
-    features: [
-      { text: "Neograničene analize", ok: true },
-      { text: "Sva cefalometrijska merenja", ok: true },
-      { text: "Farkas + Powell standardi", ok: true },
-      { text: "Skin analiza (Haut.AI)", ok: true },
-      { text: "Claude AI izveštaj (srp/eng)", ok: true },
-      { text: "PDF export izveštaja", ok: true },
-      { text: "Canthal tilt + jawline", ok: true },
-      { text: "Percentil rang", ok: true },
-      { text: "Morph vizualizacija", ok: false },
-    ],
-    cta: "Uzmi Pro",
-    href: "/sign-up?plan=pro",
-    featured: true,
-  },
-  {
-    name: "Elite",
-    price: "2490",
-    period: "/mesečno",
-    desc: "Za klinike i profesionalce",
-    features: [
-      { text: "Sve iz Pro plana", ok: true },
-      { text: "Morph vizualizacija (Replicate)", ok: true },
-      { text: "Pre/after slider", ok: true },
-      { text: "Landmark overlay PDF", ok: true },
-      { text: "API pristup", ok: true },
-      { text: "White-label opcija", ok: true },
-      { text: "Prioritetna podrška", ok: true },
-      { text: "Klinička lookup tabela", ok: true },
-      { text: "Bulk analiza", ok: true },
-    ],
-    cta: "Kontaktiraj nas",
-    href: "/kontakt",
-    featured: false,
-  },
+const FEATURES = [
+  "160+ estetskih testova",
+  "Sva cefalometrijska merenja (Farkas + Powell)",
+  "Skin analiza (pore, akne, starenje, tekstura)",
+  "Claude AI personalizovani izveštaj",
+  "Protokol za tvoje specifično lice",
+  "Canthal tilt, jawline, simetrija, proporcije",
+  "Percentil rang u odnosu na populaciju",
+  "PDF export kliničkog izveštaja",
+  "Morph vizualizacija (pre/after)",
+  "Landmark overlay sa merenjima",
+  "Podrška 7 etničkih normi",
+  "Praćenje napretka tokom vremena",
+  "14 dana garancija povrata novca",
 ];
 
 export default function Pricing() {
   return (
-    <section id="cene" className="py-28 bg-[#0d0d0d]">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="badge mb-4">Cene</div>
-          <h2 className="section-title mb-4">Jednostavne, transparentne cene</h2>
-          <p className="text-white/40">Bez skrivenih troškova. Otkaži u bilo kom trenutku.</p>
+    <section id="cene" className="py-28 bg-[#080808]">
+      <div className="max-w-2xl mx-auto px-6">
+        <div className="text-center mb-12">
+          <p className="text-xs uppercase tracking-[4px] text-[#c9a96e] mb-4">Cena</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">
+            Jedan plan. Sve uključeno.
+          </h2>
+          <p className="text-[#666] max-w-lg mx-auto text-sm leading-relaxed">
+            Bez mesečnih pretplata, bez skrivenih troškova, bez ograničenih funkcija.
+            Godišnji pristup svemu što NoarBeauty nudi.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`card p-8 relative flex flex-col ${
-                plan.featured
-                  ? "border-accent/50 bg-gradient-to-b from-accent/5 to-transparent"
-                  : ""
-              }`}
-            >
-              {plan.featured && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <span className="btn-primary text-xs px-4 py-1.5">Najpopularnije</span>
+        <div className="bg-[#0d0d0d] border border-[#c9a96e]/20 rounded-2xl p-8 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#c9a96e]/5 to-transparent pointer-events-none" />
+
+          <div className="relative">
+            <div className="flex items-start justify-between mb-8">
+              <div>
+                <div className="text-xs uppercase tracking-[3px] text-[#c9a96e] mb-2">NoarBeauty</div>
+                <div className="flex items-end gap-2">
+                  <span className="text-5xl font-black text-white">14.990</span>
+                  <span className="text-lg text-[#555] mb-1">RSD</span>
                 </div>
-              )}
-              <div className="mb-6">
-                <div className="text-sm text-white/40 mb-1">{plan.name}</div>
-                <div className="flex items-end gap-1 mb-1">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  <span className="text-sm text-white/30 mb-1">RSD{plan.period}</span>
-                </div>
-                <p className="text-xs text-white/30">{plan.desc}</p>
+                <div className="text-sm text-[#555] mt-1">godišnje · ≈ 1.249 RSD/mesečno</div>
               </div>
-
-              <ul className="space-y-2.5 mb-8 flex-1">
-                {plan.features.map((f, i) => (
-                  <li key={i} className={`text-sm flex items-center gap-2 ${f.ok ? "text-white/70" : "text-white/20"}`}>
-                    <span className={f.ok ? "text-accent" : ""}>{f.ok ? "✓" : "✗"}</span>
-                    {f.text}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href={plan.href}
-                className={plan.featured ? "btn-primary justify-center" : "btn-outline justify-center"}
-              >
-                {plan.cta}
-              </Link>
+              <div className="bg-[#c9a96e]/10 border border-[#c9a96e]/20 rounded-full px-3 py-1 text-xs text-[#c9a96e] font-medium">
+                Najpopularnije
+              </div>
             </div>
-          ))}
+
+            <ul className="space-y-3 mb-8">
+              {FEATURES.map((f) => (
+                <li key={f} className="flex items-center gap-3 text-sm text-white/70">
+                  <span className="text-[#c9a96e] text-xs shrink-0">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <Link
+              href="/sign-up"
+              className="flex items-center justify-center w-full py-4 rounded-full bg-gradient-to-r from-[#c9a96e] via-[#e8c98a] to-[#f0d4a0] text-black font-bold text-sm hover:opacity-90 transition-opacity"
+            >
+              Počni svoju transformaciju
+            </Link>
+
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-[11px] text-[#444]">
+              <span>🔒 Sigurno plaćanje</span>
+              <span>·</span>
+              <span>↩ 14 dana garancija povrata</span>
+              <span>·</span>
+              <span>💳 Visa · Mastercard · Stripe</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

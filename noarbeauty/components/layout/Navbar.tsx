@@ -45,13 +45,18 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-7 ml-4">
-          {["/#kako-radi", "/#funkcije", "/#cene", "/#faq"].map((href, i) => (
+          {[
+            ["/#zasto-glowup", "Zašto Glow-Up"],
+            ["/#kako-radi", "Kako Radi"],
+            ["/#cene", "Cene"],
+            ["/#faq", "FAQ"],
+          ].map(([href, label]) => (
             <Link
               key={href}
               href={href}
               className="text-sm text-white/50 hover:text-white transition-colors"
             >
-              {["Kako radi", "Funkcije", "Cene", "FAQ"][i]}
+              {label}
             </Link>
           ))}
         </div>
@@ -72,7 +77,7 @@ export default function Navbar() {
                 Prijavi se
               </Link>
               <Link href="/sign-up" className="btn-primary text-sm px-5 py-2.5">
-                Počni besplatno
+                Počni sada
               </Link>
             </>
           )}
