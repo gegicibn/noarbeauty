@@ -7,14 +7,14 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Stripe nije konfigurisan" }, { status: 503 });
   }
 
-  const { stripe } = await import("@/lib/stripe");
+  const { getStripe } = await import("@/lib/stripe");
   const { createAdminClient } = await import("@/lib/supabase/server");
-  const Stripe = (await import("stripe")).default;
 
+  const stripe = getStripe();
   const body = await request.text();
   const sig = request.headers.get("stripe-signature")!;
 
-  let event: ReturnType<typeof stripe.webhooks.constructEvent>;
+  let event;
   try {
     event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
   } catch {
@@ -23,29 +23,23 @@ export async function POST(request: Request) {
 
   const supabase = await createAdminClient();
 
-  switch (event.type) {
-    case "checkout.session.completed": {
-      const session = event.data.object as InstanceType<typeof Stripe.Checkout.Session>;
-      const userId = (session as any).metadata?.user_id;
-      if (userId) {
-        await supabase
-          .from("profiles")
-          .update({
-            plan: "pro" as const,
-            stripe_subscription_id: (session as any).subscription as string,
-          })
-          .eq("id", userId);
-      }
-      break;
-    }
-    case "customer.subscription.deleted": {
-      const sub = event.data.object as any;
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object as { metadata?: { user_id?: string }; subscription?: string };
+    const userId = session.metadata?.user_id;
+    if (userId) {
       await supabase
         .from("profiles")
-        .update({ plan: "free", stripe_subscription_id: null })
-        .eq("stripe_customer_id", sub.customer as string);
-      break;
+        .update({ plan: "pro" as const, stripe_subscription_id: session.subscription ?? null })
+        .eq("id", userId);
     }
+  }
+
+  if (event.type === "customer.subscription.deleted") {
+    const sub = event.data.object as { customer: string };
+    await supabase
+      .from("profiles")
+      .update({ plan: "free", stripe_subscription_id: null })
+      .eq("stripe_customer_id", sub.customer);
   }
 
   return NextResponse.json({ received: true });

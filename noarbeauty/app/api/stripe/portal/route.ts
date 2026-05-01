@@ -7,7 +7,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Stripe nije konfigurisan" }, { status: 503 });
   }
 
-  const { stripe } = await import("@/lib/stripe");
+  const { getStripe } = await import("@/lib/stripe");
   const { createClient } = await import("@/lib/supabase/server");
 
   const supabase = await createClient();
@@ -24,6 +24,7 @@ export async function GET(request: Request) {
     return NextResponse.redirect(new URL("/settings", request.url));
   }
 
+  const stripe = getStripe();
   const session = await stripe.billingPortal.sessions.create({
     customer: profile.stripe_customer_id,
     return_url: `${new URL(request.url).origin}/settings`,

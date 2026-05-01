@@ -7,12 +7,11 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Stripe nije konfigurisan" }, { status: 503 });
   }
 
-  const { stripe, PLANS } = await import("@/lib/stripe");
-  type Plan = "free" | "pro";
+  const { getStripe, PLANS } = await import("@/lib/stripe");
   const { createClient } = await import("@/lib/supabase/server");
 
   const url = new URL(request.url);
-  const plan = (url.searchParams.get("plan") as Plan) ?? "pro";
+  const plan = (url.searchParams.get("plan") ?? "pro") as "free" | "pro";
 
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -22,6 +21,8 @@ export async function GET(request: Request) {
   if (!planConfig?.stripePriceId) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
+
+  const stripe = getStripe();
 
   const { data: profile } = await supabase
     .from("profiles")
