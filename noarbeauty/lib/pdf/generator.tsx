@@ -1,5 +1,5 @@
 import {
-  Document, Page, Text, View, StyleSheet, renderToBuffer, Font,
+  Document, Page, Text, View, StyleSheet, renderToBuffer,
 } from "@react-pdf/renderer";
 import type { ReportResults } from "@/lib/types/database.types";
 

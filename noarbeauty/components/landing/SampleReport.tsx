@@ -2,18 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 const METRICS = [
-  { key: "Simetrija lica",       score: 91, good: true  },
-  { key: "Zlatni rez (φ)",       score: 87, good: true  },
-  { key: "Canthal tilt",         score: 84, good: true  },
-  { key: "Farkas indeks",        score: 89, good: true  },
-  { key: "Trećine lica",         score: 82, good: true  },
-  { key: "Jawline definicija",   score: 76, good: true  },
-  { key: "Nazofrontalni ugao",   score: 71, good: true  },
-  { key: "Nasolabijalni ugao",   score: 68, good: false },
-  { key: "Razmak očiju",         score: 80, good: true  },
-  { key: "Širina nosa",          score: 78, good: true  },
-  { key: "Proporcija usana",     score: 73, good: true  },
-  { key: "Harmonija crta",       score: 88, good: true  },
+  { key: "Simetrija lica",       score: 91 },
+  { key: "Zlatni rez (φ)",       score: 87 },
+  { key: "Canthal tilt",         score: 84 },
+  { key: "Farkas indeks",        score: 89 },
+  { key: "Trećine lica",         score: 82 },
+  { key: "Jawline definicija",   score: 76 },
+  { key: "Nazofrontalni ugao",   score: 71 },
+  { key: "Nasolabijalni ugao",   score: 68 },
+  { key: "Razmak očiju",         score: 80 },
+  { key: "Širina nosa",          score: 78 },
+  { key: "Proporcija usana",     score: 73 },
+  { key: "Harmonija crta",       score: 88 },
 ];
 
 function scoreColor(s: number) {
@@ -64,7 +64,7 @@ export default function SampleReport() {
                 Cefalometrijska merenja
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-                {METRICS.map(({ key, score, good }) => (
+                {METRICS.map(({ key, score }) => (
                   <div key={key}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs text-[#888]">{key}</span>

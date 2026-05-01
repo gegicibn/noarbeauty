@@ -33,7 +33,7 @@ export async function POST(
     const pdfBuffer = await generatePDF(report.results as ReportResults, id);
 
     const fileName = `reports/${user.id}/${id}.pdf`;
-    const { data: uploadData, error: uploadError } = await supabase.storage
+    const { error: uploadError } = await supabase.storage
       .from("reports")
       .upload(fileName, pdfBuffer, {
         contentType: "application/pdf",

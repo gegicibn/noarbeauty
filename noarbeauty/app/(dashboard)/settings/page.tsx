@@ -10,7 +10,6 @@ export default function SettingsPage() {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [name, setName] = useState("");
   const [saving, setSaving] = useState(false);
-  const [deletingAccount, setDeletingAccount] = useState(false);
   const router = useRouter();
   const supabase = createClient();
 

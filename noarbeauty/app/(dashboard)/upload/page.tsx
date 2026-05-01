@@ -52,6 +52,7 @@ function DropZone({
       <input {...getInputProps()} />
       {preview ? (
         <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={preview} alt={slot.label} className="w-full h-full object-cover" />
           <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 p-3">
             <div className="text-xs text-white/80 font-medium">{slot.label} ✓</div>
@@ -76,7 +77,7 @@ export default function UploadPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const supabase = createClient();
-  const { trackAnalysisStarted, trackAnalysisCompleted, trackUploadStarted } = useTracking();
+  const { trackAnalysisStarted, trackAnalysisCompleted } = useTracking();
 
   const allUploaded = Object.values(photos).every(Boolean);
 

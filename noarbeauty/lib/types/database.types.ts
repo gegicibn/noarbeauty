@@ -49,7 +49,9 @@ export interface Database {
         Update: Partial<Database["public"]["Tables"]["payments"]["Insert"]>;
       };
     };
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     Views: {};
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     Functions: {};
     Enums: {
       plan_type: "free" | "pro" | "elite";
