@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
-import { stripe, PLANS, type Plan } from "@/lib/stripe";
-import { createClient } from "@/lib/supabase/server";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return NextResponse.json({ error: "Stripe nije konfigurisan" }, { status: 503 });
+  }
+
+  const { stripe, PLANS } = await import("@/lib/stripe");
+  type Plan = "free" | "pro";
+  const { createClient } = await import("@/lib/supabase/server");
+
   const url = new URL(request.url);
   const plan = (url.searchParams.get("plan") as Plan) ?? "pro";
 
@@ -11,7 +19,7 @@ export async function GET(request: Request) {
   if (!user) return NextResponse.redirect(new URL("/sign-in", request.url));
 
   const planConfig = PLANS[plan];
-  if (!planConfig.stripePriceId) {
+  if (!planConfig?.stripePriceId) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 

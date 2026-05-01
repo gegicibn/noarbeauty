@@ -1,13 +1,20 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
-import { createAdminClient } from "@/lib/supabase/server";
-import type Stripe from "stripe";
+
+export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_WEBHOOK_SECRET) {
+    return NextResponse.json({ error: "Stripe nije konfigurisan" }, { status: 503 });
+  }
+
+  const { stripe } = await import("@/lib/stripe");
+  const { createAdminClient } = await import("@/lib/supabase/server");
+  const Stripe = (await import("stripe")).default;
+
   const body = await request.text();
   const sig = request.headers.get("stripe-signature")!;
 
-  let event: Stripe.Event;
+  let event: ReturnType<typeof stripe.webhooks.constructEvent>;
   try {
     event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!);
   } catch {
@@ -18,27 +25,25 @@ export async function POST(request: Request) {
 
   switch (event.type) {
     case "checkout.session.completed": {
-      const session = event.data.object as Stripe.Checkout.Session;
-      const userId = session.metadata?.user_id;
-      const plan = session.metadata?.plan;
-      if (userId && plan) {
+      const session = event.data.object as InstanceType<typeof Stripe.Checkout.Session>;
+      const userId = (session as any).metadata?.user_id;
+      if (userId) {
         await supabase
           .from("profiles")
           .update({
             plan: "pro" as const,
-            stripe_subscription_id: session.subscription as string,
+            stripe_subscription_id: (session as any).subscription as string,
           })
           .eq("id", userId);
       }
       break;
     }
     case "customer.subscription.deleted": {
-      const sub = event.data.object as Stripe.Subscription;
-      const customerId = sub.customer as string;
+      const sub = event.data.object as any;
       await supabase
         .from("profiles")
         .update({ plan: "free", stripe_subscription_id: null })
-        .eq("stripe_customer_id", customerId);
+        .eq("stripe_customer_id", sub.customer as string);
       break;
     }
   }

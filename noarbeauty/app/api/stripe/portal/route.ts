@@ -1,8 +1,15 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
-import { createClient } from "@/lib/supabase/server";
+
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  if (!process.env.STRIPE_SECRET_KEY) {
+    return NextResponse.json({ error: "Stripe nije konfigurisan" }, { status: 503 });
+  }
+
+  const { stripe } = await import("@/lib/stripe");
+  const { createClient } = await import("@/lib/supabase/server");
+
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.redirect(new URL("/sign-in", request.url));
